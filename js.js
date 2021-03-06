@@ -1,37 +1,44 @@
 
 
-function isSymbolPresentInString(str,simbol){
-    for(let i = 0; i< str.length; i++){
-        if(str[i] === simbol){
+function isSymbolPresentInString(str, simbol) {
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === simbol) {
             console.log(true);
             return true
-        }else{
+        }
+
+    }
+    for (let j = 0; j < str.length; j++) {
+        if (str[j] !== simbol) {
             console.log(false);
             return false;
         }
+
     }
 }
-isSymbolPresentInString("ffff","v");
 
+isSymbolPresentInString("bhh", "v");
+
+// *************не получаеться у меня с одним for *******************
 function getSymbolIndex(str, symbol) {
     for (let i = 0; i < str.length; i++) {
         if (str[i] === symbol) {
             console.log(`index:${i}`);
             return i;
-
         }
 
     }
-    for (let j = 0; j < str.length; i++) {
+    for (let j = 0; j < str.length; j++) {
         if (str[j] !== symbol) {
             console.log(-1);
-            return -1
+            return -1;
         }
-
     }
 
 }
-getSymbolIndex("Slavik", "g");
+
+
+getSymbolIndex("Slavik", "v");
 
 let obj1 = {
     user: "Slavik",
@@ -41,8 +48,9 @@ let obj1 = {
 }
 let obj2 = {}
 
+
 function copy(target, origin) {
-    for (key in origin) {
+    for (let key in origin) {
         target[key] = origin[key]
     }
     return target
@@ -55,23 +63,21 @@ console.log('obj2', obj2);
 
 
 function comparisonObject(target, origin) {
-    let ObjArrey = [];
-    let ObjArrey2 = [];
-    for (key in target) {
-        ObjArrey.push(target[key]);
-
-    }
-    for (key in origin) {
-        ObjArrey2.push(origin[key]);
-
-    }
-    if ((ObjArrey.length === ObjArrey2.length) && (target[key] === origin[key])) {
-        console.log(true)
-        return true;
+    if (Object.keys(target).length !== Object.keys(origin).length) {
+        console.log("FALSE");
+        return false
     } else {
-        return false;
-        console.log(false);
+        for (let key in target) {
+            if (target[key] !== origin[key]) {
+                console.log(false);
+                return false;
+            } else {
+                console.log(true);
+                return true;
+            }
+        }
     }
+
 
 }
 comparisonObject(obj1, obj2);
@@ -84,7 +90,7 @@ function checkStr(str) {
 
     for (let i = 0; i < str.length; i++) {
 
-        if (obj10[str[i]] == true) {
+        if (obj10[str[i]] !== undefined) {
             obj10[str[i]] += 1;
         } else {
             obj10[str[i]] = 1;
